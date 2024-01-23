@@ -1,6 +1,6 @@
 {
   "name": "DSPReplicatorPlus",
-  "version_number": "0.0.1",
+  "version_number": "0.0.2",
   "website_url": "https://github.com/appuns/DSPReplicatorPlus",
   "description": "Many buttons allow you to easily add queues of varying numbers in head or end. This don't affect achievements or milestones.多くのボタンを使用して、先頭または末尾にさまざまな量のキューを簡単に追加できます。実績やマイルストーンには影響しません。",
   "dependencies": [

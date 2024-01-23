@@ -182,7 +182,14 @@ namespace DSPReplicatorPlus
         public static void onClickEndMax()
         {
             UIReplicatorWindow replicator = UIRoot.instance.uiGame.replicator;
-            mechaForgeAddTask(replicator.mechaForge.PredictTaskCount(replicator.selectedRecipe.ID, 999));
+            if (replicator.isInstantItem)
+            {
+                mechaForgeAddTask(1000);
+            }
+            else
+            {
+                mechaForgeAddTask(replicator.mechaForge.PredictTaskCount(replicator.selectedRecipe.ID, 999));
+            }
         }
 
         //public static void onClickEndStack()
@@ -219,7 +226,14 @@ namespace DSPReplicatorPlus
         public static void onClickHeadMax()
         {
             UIReplicatorWindow replicator = UIRoot.instance.uiGame.replicator;
-            mechaForgeAddTaskHead(replicator.mechaForge.PredictTaskCount(replicator.selectedRecipe.ID, 999));
+            if(replicator.isInstantItem)
+            {
+                mechaForgeAddTaskHead(1000);
+            }
+            else
+            {
+                mechaForgeAddTaskHead(replicator.mechaForge.PredictTaskCount(replicator.selectedRecipe.ID, 999));
+            }
         }
         //public static void onClickheadStack()
         //{
@@ -257,22 +271,40 @@ namespace DSPReplicatorPlus
         {
             UIReplicatorWindow replicator = UIRoot.instance.uiGame.replicator;
             int id = replicator.selectedRecipe.ID;
-            ForgeTask forgeTask = replicator.mechaForge.AddTaskIterate(id, count);
-            Assert.NotNull(forgeTask);
-
+            replicator.mechaForge.AddTask(id, count);
         }
 
         public static void mechaForgeAddTaskHead(int count)
         {
             UIReplicatorWindow replicator = UIRoot.instance.uiGame.replicator;
             int id = replicator.selectedRecipe.ID;
-            List<ForgeTask> list = new List<ForgeTask>(replicator.mechaForge.tasks);
-            replicator.mechaForge.tasks.Clear();
-            ForgeTask forgeTask = replicator.mechaForge.AddTaskIterate(id, count);
-            Assert.NotNull(forgeTask);
-            for (int i = 0; i < list.Count; i++)
+            int length = replicator.mechaForge.tasks.Count;
+            if (length == 0)
             {
-                replicator.mechaForge.tasks.Add(list[i]);
+                replicator.mechaForge.AddTask(id, count);
+            }
+            else
+            {
+                List<ForgeTask> list = new List<ForgeTask>(replicator.mechaForge.tasks);
+                replicator.mechaForge.tasks.Clear();
+
+
+                replicator.mechaForge.AddTask(id, count);
+                int incr = replicator.mechaForge.tasks.Count;
+                //Main.LogManager.Logger.LogInfo($"----------------------------------------------------{incr}");
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].parentTaskIndex >= 0)
+                    {
+                        list[i].parentTaskIndex += incr;
+                    }
+                    replicator.mechaForge.tasks.Add(list[i]);
+                }
+                //for (int i = 0; i < replicator.mechaForge.tasks.Count; i++)
+                //{
+                //    Main.LogManager.Logger.LogInfo($"{i} {replicator.mechaForge.tasks[i].count} {replicator.mechaForge.tasks[i].parentTaskIndex}");
+                //}
+
             }
         }
 

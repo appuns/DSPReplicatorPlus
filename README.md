@@ -23,5 +23,10 @@ If you have any problems or suggestions, please contact DISCORD MSP Modding serv
 不具合、改善案などありましたら、DISCORD「DysonSphereProgram_Jp」サーバー**Appun#8284**までお願いします。<br>
 <br>
 ## Change Log　更新履歴
+### v0.0.2
+- Supported the game version 0.10.28.21307. ゲームバージョン0.10.28.21307に対応しています。
+- Supported sandbox mode.サンドボックスモートに対応しました。
+- Fixed a bug that buttons are enabled even for recipes that cannot be replicated with a Replicator. 合成器で合成できないレシピでもボタンが有効になるバグを修正しました。
+- Fixed a bug that caused Replicating to stop. 合成が途中で止まるバグを解消しました。
 ### v0.0.1
 - released, Supported the game version 0.10.28.21247. リリースしました。ゲームバージョン0.10.28.21247に対応しています。

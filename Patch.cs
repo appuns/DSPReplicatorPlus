@@ -34,7 +34,52 @@ namespace DSPReplicatorPlus
         [HarmonyPostfix, HarmonyPatch(typeof(UIReplicatorWindow), "_OnUpdate")]
         public static void UIReplicatorWindow_OnUpdate_Postfix(UIReplicatorWindow __instance)
         {
-            if (__instance.selectedRecipe != null && __instance.selectedRecipe.Handcraft)
+            if (__instance.selectedRecipe == null)
+            {
+                return;
+            }
+
+                if (GameMain.sandboxToolsEnabled && __instance.isInstantItem)
+            {
+                UI.headMax.GetComponent<Button>().interactable = true;
+                //UI.headStack.GetComponent<Button>().interactable = true;
+                UI.head500.GetComponent<Button>().interactable = true;
+                UI.head100.GetComponent<Button>().interactable = true;
+                UI.head50.GetComponent<Button>().interactable = true;
+                UI.head10.GetComponent<Button>().interactable = true;
+                UI.head5.GetComponent<Button>().interactable = true;
+                UI.head1.GetComponent<Button>().interactable = true;
+
+                UI.endMax.GetComponent<Button>().interactable = true;
+                //UI.endStack.GetComponent<Button>().interactable = true;
+                UI.end500.GetComponent<Button>().interactable = true;
+                UI.end100.GetComponent<Button>().interactable = true;
+                UI.end50.GetComponent<Button>().interactable = true;
+                UI.end10.GetComponent<Button>().interactable = true;
+                UI.end5.GetComponent<Button>().interactable = true;
+                UI.end1.GetComponent<Button>().interactable = true;
+            }
+            else if (!__instance.selectedRecipe.Handcraft)
+            {
+                UI.headMax.GetComponent<Button>().interactable = false;
+                //UI.headStack.GetComponent<Button>().interactable = false;
+                UI.head500.GetComponent<Button>().interactable = false;
+                UI.head100.GetComponent<Button>().interactable = false;
+                UI.head50.GetComponent<Button>().interactable = false;
+                UI.head10.GetComponent<Button>().interactable = false;
+                UI.head5.GetComponent<Button>().interactable = false;
+                UI.head1.GetComponent<Button>().interactable = false;
+
+                UI.endMax.GetComponent<Button>().interactable = false;
+                //UI.endStack.GetComponent<Button>().interactable = false;
+                UI.end500.GetComponent<Button>().interactable = false;
+                UI.end100.GetComponent<Button>().interactable = false;
+                UI.end50.GetComponent<Button>().interactable = false;
+                UI.end10.GetComponent<Button>().interactable = false;
+                UI.end5.GetComponent<Button>().interactable = false;
+                UI.end1.GetComponent<Button>().interactable = false;
+            }
+            else if (__instance.selectedRecipe != null)
             {
                 int num = __instance.mechaForge.PredictTaskCount(__instance.selectedRecipe.ID, 999);
                 int stackSize = LDB.items.Select(LDB.recipes.Select(__instance.selectedRecipe.ID).Results[0]).StackSize;

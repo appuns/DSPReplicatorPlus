@@ -25,8 +25,7 @@ using System.Security.Permissions;
 [module: UnverifiableCode]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 
-//アップデート予定？[
-//前回開いていたレシピを開く
+//アップデート予定？
 //最大値の表示
 //スタックサイズボタン
 //レシピアイコンに現在の所持数を表示
@@ -34,7 +33,7 @@ using System.Security.Permissions;
 
 namespace DSPReplicatorPlus
 {
-    [BepInPlugin("Appun.DSP.plugin.DSPReplicatorPlus", "DSPReplicatorPlus", "0.0.1")]
+    [BepInPlugin("Appun.DSP.plugin.DSPReplicatorPlus", "DSPReplicatorPlus", "0.0.2")]
     [HarmonyPatch]
     public class Main : BaseUnityPlugin
     {
